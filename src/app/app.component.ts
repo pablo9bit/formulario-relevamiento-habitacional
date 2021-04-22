@@ -1573,6 +1573,7 @@ export class AppComponent {
  
     const newForm = JSON.parse(JSON.stringify(this.model).replace(/\//g, "-"));
     this.db.list('formulariosEmpleo').push(newForm);
+    this.model.options.resetModel()
     alert("El formulario se ha cargado con éxito.")
 
     // } else
