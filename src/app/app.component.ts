@@ -642,7 +642,14 @@ export class AppComponent {
               templateOptions: {
                 label: 'Manzana',
                 placeholder: 'Igrese una manzana',
-                required: true
+              }
+            },
+            {
+              key: 'Lote',
+              type: 'input',
+              templateOptions: {
+                label: 'Lote',
+                placeholder: 'Igrese un lote',
               }
             },
             {
@@ -757,7 +764,7 @@ export class AppComponent {
       //------------------------------------------------------------------------------------------------------------------------
       {
         className: 'datos-deteccion',
-        template: '<div class="coltit"><h2 style="color:#53aae0;">Detección de vivienda en el lote:</h2></div>',
+        template: '<div class="coltit"><h2 style="color:#53aae0;">Detección de viviendas en el lote:</h2></div>',
       },
   
       {
@@ -774,26 +781,6 @@ export class AppComponent {
               templateOptions: {
                 type: 'number',
                 label: '¿Cuántas viviendas hay en el lote?',
-                placeholder: 'Igrese una cantidad',
-                required: true,
-              }
-            },
-            {
-              key: '¿Cuáuntos hogares hay en la vivienda?',
-              type: 'input',
-              templateOptions: {
-                type: 'number',
-                label: '¿Cuáuntos hogares hay en la vivienda?',
-                placeholder: 'Igrese una cantidad',
-                required: true,
-              }
-            },
-            {
-              key: '¿Cuántos hogares hay en la vivienda?',
-              type: 'input',
-              templateOptions: {
-                type: 'number',
-                label: '¿Cuántos hogares hay en la vivienda?',
                 placeholder: 'Igrese una cantidad',
                 required: true,
               }
@@ -850,7 +837,7 @@ export class AppComponent {
               key: '¿Cantidad de pozos en uso?',
               type: 'input',
               templateOptions: {
-                label: '¿Cantidad de pozos saturados?',
+                label: '¿Cantidad de pozos en uso?',
                 placeholder: 'Ingrese una cantidad',
                 type: 'number'
               }
@@ -1022,13 +1009,29 @@ export class AppComponent {
               fieldArray: {
                 fieldGroup: [
                   {
-                    key: 'Tipo de propietario',
+                    template: '<h2>Indagación de viviendas y grupos familiares</h2>'
+                  },
+                  {
+                    key: 'numero_vivienda',
+                    type: 'input',
+                    templateOptions:{
+                      label: 'Numero de vivienda',
+                      placeholder: 'Ingrese el número que identifique la vivienda',
+                      type: 'number',
+                      required: true
+                    }
+                  },
+                  {
+                    key: 'tipo_propietario',
                     type: 'select',
                     templateOptions: {
                       label: 'Tipo de propietario',
                       options: [
                         { value: 'Propietario de vivienda y terreno', label: 'Propietario de vivienda y terreno' },
                         { value: 'Propietario de solo vivienda', label: 'Propietario de solo vivienda' },
+                        { value: 'Ninguno', label: 'Ninguno' },
+                        { value: 'Otro', label: 'Otro' },
+                        { value: 'Ocupante por préstamo', label: 'Ocupante por préstamo' },
                       ],
                       required: true
                     }
@@ -1045,7 +1048,6 @@ export class AppComponent {
                         { value: 'Declaración jurada de herederos con acreditación de vinculo', label: 'Declaración jurada de herederos con acreditación de vinculo' },
                         { value: 'Resolución de inscripción en registro de poseedor LEY 9150', label: 'Resolución de inscripción en registro de poseedor LEY 9150' },
                       ],
-                      required: true
                     },
                   },
                   {
@@ -1060,7 +1062,11 @@ export class AppComponent {
                         { value: 'Ocupante de hecho (con permiso)', label: 'Ocupante de hecho (con permiso)' },
                         { value: 'En un relación de depandencia', label: 'En un relación de depandencia' },
                         { value: 'Otra situación', label: 'Otra situación' },
-                      ]
+                      ],
+                    },
+                    expressionProperties:{
+                      show: 'model.tipo_propietario == "Ocupante por préstamo"',
+                      hide: 'model.tipo_propietario == "Propietario de vivienda y terreno" || model.tipo_propietario == "Propietario de solo vivienda" || model.tipo_propietario == "Ninguno"  || model.tipo_propietario == "Otro" '
                     }
                   },
                   {
@@ -1180,35 +1186,14 @@ export class AppComponent {
                     }
                   },
                   {
-                    key: '¿Tiene agua por cañeria dentro de la vivienda?',
+                    key: '¿El acceso al agua es... ?',
                     type: 'select',
                     templateOptions: {
-                      label: '¿Tiene agua por cañeria dentro de la vivienda?',
+                      label: '¿El acceso al agua es... ?',
                       options: [
-                        { value: 'Si', label: 'Si' },
-                        { value: 'No', label: 'No' },
-                      ]
-                    }
-                  },
-                  {
-                    key: '¿Por fuera de la vivienda pero dentro del terreno?',
-                    type: 'select',
-                    templateOptions: {
-                      label: '¿Por fuera de la vivienda pero dentro del terreno?',
-                      options: [
-                        { value: 'Si', label: 'Si' },
-                        { value: 'No', label: 'No' },
-                      ]
-                    }
-                  },
-                  {
-                    key: '¿Por fuera de la vivienda pero fuera del terreno?',
-                    type: 'select',
-                    templateOptions: {
-                      label: '¿Por fuera de la vivienda pero fuera del terreno?',
-                      options: [
-                        { value: 'Si', label: 'Si' },
-                        { value: 'No', label: 'No' },
+                        { value: 'Por cañería dentro de la vivienda', label: 'Por cañería dentro de la vivienda' },
+                        { value: 'Por fuera de la vivienda pero dentro del terreno', label: 'Por fuera de la vivienda pero dentro del terreno' },
+                        { value: 'Por fuera del terreno', label: 'Por fuera del terreno' },
                       ]
                     }
                   },
@@ -1238,6 +1223,17 @@ export class AppComponent {
                     }
                   },
                   {
+                    key: '¿Posee Tarifa Social?',
+                    type: 'select',
+                    templateOptions: {
+                      label: '¿Posee Tarifa Social?',
+                      options: [
+                        { value: 'Si', label: 'Si' },
+                        { value: 'No', label: 'No' },
+                      ]
+                    }
+                  },
+                  {
                     template: '<h3>Gas</h3>'
                   },
                   {
@@ -1252,6 +1248,19 @@ export class AppComponent {
                     }
                   },
                   {
+                    template: '<h2>Hogares</h2>'
+                  },
+                  {
+                    key: 'Cantidad de hogares',
+                    type: 'input',
+                    templateOptions:{
+                      label: 'Cantidad de hogares',
+                      placeholder: 'Ingrese la cantidad de hogares en la vivienda',
+                      type: 'number',
+                      required: true
+                    }
+                  },
+                  {
                     key: 'Hogares',
                     type: 'repeat',
                     templateOptions: {
@@ -1259,6 +1268,16 @@ export class AppComponent {
                     },
                     fieldArray: {
                       fieldGroup: [
+                        {
+                          key: 'numero_hogar',
+                          type: 'input',
+                          templateOptions:{
+                            label: 'Numero de hogar',
+                            placeholder: 'Ingrese un numero de hogar',
+                            type: 'number',
+                            required: true
+                          }
+                        },
                         {
                           key: 'Ocupantes',
                           type: 'repeat',
@@ -1313,6 +1332,39 @@ export class AppComponent {
                                   options: [
                                     { value: 'Femenino', label: 'Femenino' },
                                     { value: 'Masculino', label: 'Masculino' },
+                                  ]
+                                }
+                              },
+                              {
+                                key: 'Nacionalidad',
+                                type: 'select',
+                                templateOptions:{
+                                  label: 'Nacionalidad',
+                                  options:[
+                                    { value: 'Argentina', label: 'Argentina' },
+                                    { value: 'Brasil', label: 'Brasil' },
+                                    { value: 'Bolivia', label: 'Bolivia' },
+                                    { value: 'Chile', label: 'Chile' },
+                                    { value: 'Paraguay', label: 'Paraguay' },
+                                    { value: 'Perú', label: 'Perú' },
+                                    { value: 'Uruguay', label: 'Uruguay' },
+                                    { value: 'Otro país', label: 'Otro país' },
+                                  ]
+                                }
+                              },
+                              {
+                                key: 'Estado Civil',
+                                type: 'select',
+                                templateOptions:{
+                                  label: 'Estado Civil',
+                                  options:[
+                                    { value: 'Soltero/a', label: 'Soltero/a' },
+                                    { value: 'Casado/a', label: 'Casado/a' },
+                                    { value: 'Concubino/a', label: 'Concubino/a' },
+                                    { value: 'Divorciado/a', label: 'Divorciado/a' },
+                                    { value: 'Separado/a de hecho', label: 'Separado/a de hecho' },
+                                    { value: 'Viudo/a', label: 'Viudo/a' },
+                                    { value: 'Otro', label: 'Otro' },
                                   ]
                                 }
                               },
@@ -1484,11 +1536,21 @@ export class AppComponent {
                               },
                               {
                                 key: 'Vínculo con el solicitante',
-                                type: 'input',
+                                type: 'select',
                                 templateOptions: {
                                   required: true,
                                   label: 'Vínculo con el solicitante',
-                                  placeholder: 'Ingrese un vinculo'
+                                  options:[
+                                    { value: '1.	Jefe/a del Hogar', label: '1.	Jefe/a del Hogar'},
+                                    { value: '2.	Cónyuge/pareja', label: '2.	Cónyuge/pareja'},
+                                    { value: '3.	Hijo/a', label: '3.	Hijo/a'},
+                                    { value: '4.	Yerno/nuera', label: '4.	Yerno/nuera'},
+                                    { value: '5.	Nieto/a', label: '5.	Nieto/a'},
+                                    { value: '6.	Padre/madre', label: '6.	Padre/madre'},
+                                    { value: '7.	Suegro/a', label: '7.	Suegro/a'},
+                                    { value: '8.	Otros familiares', label: '8.	Otros familiares'},
+                                    { value: '9.	Otros no Familiares', label: '9.	Otros no Familiares'},
+                                  ]
                                 }
                               },
                             ]
@@ -1511,6 +1573,8 @@ export class AppComponent {
  
     const newForm = JSON.parse(JSON.stringify(this.model).replace(/\//g, "-"));
     this.db.list('formulariosEmpleo').push(newForm);
+    this.model.options.resetModel()
+    alert("El formulario se ha cargado con éxito.")
 
     // } else
     //   (error) => {
