@@ -42,6 +42,7 @@ export class AppComponent {
             {
               key: 'Localidad',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: 'Localidad',
                 placeholder: 'Ingrese una localidad',
@@ -51,6 +52,7 @@ export class AppComponent {
             {
               key: 'Barrio',
               type: 'select',
+              defaultValue: null,
               templateOptions: {
                 label: 'Barrio',
                 options: [
@@ -639,6 +641,7 @@ export class AppComponent {
             {
               key: 'Manzana',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: 'Manzana',
                 placeholder: 'Igrese una manzana',
@@ -647,6 +650,7 @@ export class AppComponent {
             {
               key: 'Lote',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: 'Lote',
                 placeholder: 'Igrese un lote',
@@ -655,6 +659,7 @@ export class AppComponent {
             {
               key: 'Domicilio',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: 'Domicilio',
                 placeholder: 'Igrese un domicilio',
@@ -664,6 +669,7 @@ export class AppComponent {
             {
               key: 'Indicaciónes de referencias',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: 'Indicaciónes de referencias',
                 placeholder: 'Entre calles; Avenidas; Edificios públicos; Locales comerciales conocidos',
@@ -701,6 +707,7 @@ export class AppComponent {
             {
               key: 'Motivo',
               type: 'select',
+              defaultValue: null,
               templateOptions: {
                 label: 'Motivo',
                 required: true,
@@ -721,6 +728,7 @@ export class AppComponent {
             {
               key: 'Observación',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: 'Observación',
                 placeholder: 'Igrese una observación',
@@ -733,6 +741,7 @@ export class AppComponent {
             {
               key: 'Nombre del entrevistador',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: 'Nombre del entrevistador',
                 placeholder: 'Igrese un nombre',
@@ -747,6 +756,7 @@ export class AppComponent {
             {
               key: 'Teléfono del entrevistador',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: 'Teléfono del entrevistador',
                 placeholder: 'Igrese un teléfono',
@@ -778,6 +788,7 @@ export class AppComponent {
             {
               key: '¿Cuántas viviendas hay en el lote?',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 type: 'number',
                 label: '¿Cuántas viviendas hay en el lote?',
@@ -803,6 +814,7 @@ export class AppComponent {
             {
               key: '¿Que otro uso le da a la vivienda ademas de la habitacional?',
               type: 'select',
+              defaultValue: null,
               templateOptions: {
                 label: '¿Que otro uso le da a la vivienda ademas de la habitacional?',
                 options: [
@@ -818,6 +830,7 @@ export class AppComponent {
             {
               key: '¿Cantidad total de pozos?',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: '¿Cantidad total de pozos?',
                 placeholder: 'Ingrese una cantidad',
@@ -827,6 +840,7 @@ export class AppComponent {
             {
               key: '¿Cantidad de pozos saturados?',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: '¿Cantidad de pozos saturados?',
                 placeholder: 'Ingrese una cantidad',
@@ -836,6 +850,7 @@ export class AppComponent {
             {
               key: '¿Cantidad de pozos en uso?',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: '¿Cantidad de pozos en uso?',
                 placeholder: 'Ingrese una cantidad',
@@ -845,6 +860,7 @@ export class AppComponent {
             {
               key: 'se_inunda_actualmente',
               type: 'select',
+              defaultValue: null,
               templateOptions: {
                 label: '¿Se inuda actualmente?',
                 options: [
@@ -856,6 +872,7 @@ export class AppComponent {
             {
               key: 'Frecuencia',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: 'Frecuencia',
                 placeholder: 'Ingrese una frecuencia en caso de ser Si',
@@ -871,6 +888,7 @@ export class AppComponent {
             {
               key: '¿Posee cesto domiciliario?',
               type: 'select',
+              defaultValue: null,
               templateOptions: {
                 label: '¿Posee cesto domiciliario?',
                 options: [
@@ -882,6 +900,7 @@ export class AppComponent {
             {
               key: 'cuenta_con_servicio_de_recoleccion',
               type: 'select',
+              defaultValue: null,
               templateOptions: {
                 label: '¿Cuenta con servicio de recolección?',
                 options: [
@@ -893,6 +912,7 @@ export class AppComponent {
             {
               key: '¿Que tipo de servicio?',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: '¿Que tipo de servicio?',
                 placeholder: 'Ingrese un tipo de servicio'
@@ -908,6 +928,7 @@ export class AppComponent {
             {
               key: '¿Que lineas pasan?',
               type: 'select',
+              defaultValue: null,
               templateOptions: {
                 label: '¿Que lineas pasan?',
                 multiple: true,
@@ -994,6 +1015,7 @@ export class AppComponent {
             {
               key: '¿A cuantas cuadras está la parada más proxima?',
               type: 'input',
+              defaultValue: null,
               templateOptions: {
                 label: '¿A cuantas cuadras está la parada más proxima?',
                 placeholder: 'Ingrese una cantidad',
@@ -1014,6 +1036,7 @@ export class AppComponent {
                   {
                     key: 'numero_vivienda',
                     type: 'input',
+                    defaultValue: null,
                     templateOptions:{
                       label: 'Numero de vivienda',
                       placeholder: 'Ingrese el número que identifique la vivienda',
@@ -1024,6 +1047,7 @@ export class AppComponent {
                   {
                     key: 'tipo_propietario',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Tipo de propietario',
                       options: [
@@ -1039,6 +1063,7 @@ export class AppComponent {
                   {
                     key: 'Documento a presentar poseedor de titulo de dueño',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Documento a presentar poseedor de titulo de dueño',
                       options: [
@@ -1053,6 +1078,7 @@ export class AppComponent {
                   {
                     key: 'Ocupante por préstamo',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Ocupante por préstamo',
                       options: [
@@ -1072,6 +1098,7 @@ export class AppComponent {
                   {
                     key: '¿Cuantas habitaciones tienen para dormir?  (sin baño, ni cocina)',
                     type: 'input',
+                    defaultValue: null,
                     templateOptions: {
                       type: 'number',
                       label: '¿Cuantas habitaciones tienen para dormir?  (sin baño, ni cocina)',
@@ -1082,6 +1109,7 @@ export class AppComponent {
                   {
                     key: 'Posee sistema estructural',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Posee sistema estructural',
                       options: [
@@ -1094,6 +1122,7 @@ export class AppComponent {
                   {
                     key: 'Tipo de muros',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Tipo de muros',
                       options: [
@@ -1106,6 +1135,7 @@ export class AppComponent {
                   {
                     key: 'Tipo de cubierta',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Tipo de cubierta',
                       options: [
@@ -1121,6 +1151,7 @@ export class AppComponent {
                   {
                     key: 'posee_baño',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: '¿Posee baño?',
                       options: [
@@ -1132,6 +1163,7 @@ export class AppComponent {
                   {
                     key: '¿Cuantos? (baños)',
                     type: 'input',
+                    defaultValue: null,
                     templateOptions: {
                       type: 'number',
                       label: '¿Cuantos?',
@@ -1143,8 +1175,9 @@ export class AppComponent {
                     }
                   },
                   {
-                    key: 'Tipo de baño ',
+                    key: 'Tipo de baño',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Tipo de baño',
                       options: [
@@ -1160,6 +1193,7 @@ export class AppComponent {
                   {
                     key: 'Tratamiento de excretas',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Tratamiento de excretas',
                       options: [
@@ -1177,6 +1211,7 @@ export class AppComponent {
                   {
                     key: 'Provisión de agua',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Provisión de agua',
                       options: [
@@ -1188,6 +1223,7 @@ export class AppComponent {
                   {
                     key: '¿El acceso al agua es... ?',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: '¿El acceso al agua es... ?',
                       options: [
@@ -1200,6 +1236,7 @@ export class AppComponent {
                   {
                     key: '¿Posee tanque de agua?',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: '¿Posee tanque de agua?',
                       options: [
@@ -1214,6 +1251,7 @@ export class AppComponent {
                   {
                     key: '¿Posee electricidad con medidor?',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: '¿Posee electricidad con medidor?',
                       options: [
@@ -1225,6 +1263,7 @@ export class AppComponent {
                   {
                     key: '¿Posee Tarifa Social?',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: '¿Posee Tarifa Social?',
                       options: [
@@ -1239,6 +1278,7 @@ export class AppComponent {
                   {
                     key: 'Tipo de gas',
                     type: 'select',
+                    defaultValue: null,
                     templateOptions: {
                       label: 'Tipo de gas',
                       options: [
@@ -1253,6 +1293,7 @@ export class AppComponent {
                   {
                     key: 'Cantidad de hogares',
                     type: 'input',
+                    defaultValue: null,
                     templateOptions:{
                       label: 'Cantidad de hogares',
                       placeholder: 'Ingrese la cantidad de hogares en la vivienda',
@@ -1271,6 +1312,7 @@ export class AppComponent {
                         {
                           key: 'numero_hogar',
                           type: 'input',
+                          defaultValue: null,
                           templateOptions:{
                             label: 'Numero de hogar',
                             placeholder: 'Ingrese un numero de hogar',
@@ -1289,6 +1331,7 @@ export class AppComponent {
                               {
                                 key: 'Apellidos',
                                 type: 'input',
+                                defaultValue: null,
                                 templateOptions: {
                                   required: true,
                                   label: 'Apellidos',
@@ -1298,6 +1341,7 @@ export class AppComponent {
                               {
                                 key: 'Nombres',
                                 type: 'input',
+                                defaultValue: null,
                                 templateOptions: {
                                   required: true,
                                   label: 'Nombres',
@@ -1307,6 +1351,7 @@ export class AppComponent {
                               {
                                 key: 'DNI',
                                 type: 'input',
+                                defaultValue: null,
                                 templateOptions: {
                                   required: true,
                                   label: 'DNI',
@@ -1317,6 +1362,7 @@ export class AppComponent {
                               {
                                 key: 'Fecha de nacimiento',
                                 type: 'input',
+                                defaultValue: null,
                                 templateOptions: {
                                   type: 'date',
                                   required: true,
@@ -1326,6 +1372,7 @@ export class AppComponent {
                               {
                                 key: 'Genero',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   required: true,
                                   label: 'Genero',
@@ -1338,6 +1385,7 @@ export class AppComponent {
                               {
                                 key: 'Nacionalidad',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions:{
                                   label: 'Nacionalidad',
                                   options:[
@@ -1355,6 +1403,7 @@ export class AppComponent {
                               {
                                 key: 'Estado Civil',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions:{
                                   label: 'Estado Civil',
                                   options:[
@@ -1374,6 +1423,7 @@ export class AppComponent {
                               {
                                 key: 'posee_enfermedad_cronica',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: '¿Posee alguna enfermedad crónica?',
                                   options: [
@@ -1385,6 +1435,7 @@ export class AppComponent {
                               {
                                 key: '¿Cuál? (enfermedad crónica)',
                                 type: 'input',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: '¿Cuál?',
                                   placeholder: 'Ingrese un tipo'
@@ -1398,6 +1449,7 @@ export class AppComponent {
                               {
                                 key: 'posee_discapacidad',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: '¿Posee alguna discapacidad?',
                                   options: [
@@ -1409,6 +1461,7 @@ export class AppComponent {
                               {
                                 key: '¿Cuál? (discapacidad)',
                                 type: 'input',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: '¿Cuál?',
                                   placeholder: 'Ingrese un tipo'
@@ -1422,6 +1475,7 @@ export class AppComponent {
                               {
                                 key: 'cobra_beneficio_social',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: '¿Cobra un beneficio social?',
                                   options: [
@@ -1433,6 +1487,7 @@ export class AppComponent {
                               {
                                 key: '¿Cuál? (beneficio)',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: '¿Cuál)',
                                   options: [
@@ -1463,6 +1518,7 @@ export class AppComponent {
                               {
                                 key: 'Nivel educativo alcanzado',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: 'Nivel educativo alcanzado',
                                   options: [
@@ -1483,6 +1539,7 @@ export class AppComponent {
                               {
                                 key: '¿Asiste a algun establecimiento educativo?',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: '¿Asiste a algun establecimiento educativo?',
                                   options: [
@@ -1494,6 +1551,7 @@ export class AppComponent {
                               {
                                 key: '¿Tiene acceso a internet para la educacion vitual?',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: '¿Tiene acceso a internet para la educacion vitual?',
                                   options: [
@@ -1505,6 +1563,7 @@ export class AppComponent {
                               {
                                 key: 'Ocupación',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: 'Ocupación',
                                   options: [
@@ -1528,6 +1587,7 @@ export class AppComponent {
                               {
                                 key: 'Ingreso',
                                 type: 'input',
+                                defaultValue: null,
                                 templateOptions: {
                                   label: 'Ingreso',
                                   placeholder: 'Ingrese un ingreso',
@@ -1537,6 +1597,7 @@ export class AppComponent {
                               {
                                 key: 'Vínculo con el solicitante',
                                 type: 'select',
+                                defaultValue: null,
                                 templateOptions: {
                                   required: true,
                                   label: 'Vínculo con el solicitante',
@@ -1569,6 +1630,7 @@ export class AppComponent {
   }
 
   createPdfAndSaveInFirebase() {       
+    console.log(this.model)
     // -     Aca se graba en Firebase v2    -
     if (this.form.invalid) {
        alert('Algunos datos obligatorios son necesarios');
