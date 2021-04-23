@@ -13,7 +13,7 @@ import { validateRequired } from './app.module';
 export class AppComponent {
   title: string;
   form :FormGroup;
-  options: FormlyFormOptions 
+  options: FormlyFormOptions = {};
   model: any;
 
   fields: FormlyFieldConfig[];
@@ -45,7 +45,7 @@ export class AppComponent {
               templateOptions: {
                 label: 'Localidad',
                 placeholder: 'Ingrese una localidad',
-                required: true
+                required: true,
               }
             },
             {
@@ -1570,12 +1570,14 @@ export class AppComponent {
 
   createPdfAndSaveInFirebase() {       
     // -     Aca se graba en Firebase v2    -
- 
-    const newForm = JSON.parse(JSON.stringify(this.model).replace(/\//g, "-"));
-    this.db.list('formulariosEmpleo').push(newForm);
-    this.model.options.resetModel()
-    alert("El formulario se ha cargado con éxito.")
-
+    if (this.form.invalid) {
+       alert('Algunos datos obligatorios son necesarios');
+    }else{
+      const newForm = JSON.parse(JSON.stringify(this.model).replace(/\//g, "-"));
+      this.db.list('formulariosEmpleo').push(newForm);
+      alert("El formulario se ha cargado con éxito.")
+      window.location.reload()
+    }
     // } else
     //   (error) => {
     //     console.error('error:', error);
