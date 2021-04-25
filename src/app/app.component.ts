@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { MatDialog} from '@angular/material/dialog';
+import { ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
 import jsPDF from 'jspdf';
 import { validateRequired } from './app.module';
 
@@ -18,8 +20,8 @@ export class AppComponent {
 
   fields: FormlyFieldConfig[];
 
-  constructor(public db: AngularFireDatabase) {
-    this.title='FORMULARIO de Inscripción en el Registro Provincial de Capacitadores';
+  constructor(public db: AngularFireDatabase, public dialog : MatDialog) {
+    this.title='FORMULARIO de RELEVAMIENTO HABITACIONAL';
     this.form = new FormGroup({});
     this.model  = {};
     this.fields  = [
@@ -1629,24 +1631,22 @@ export class AppComponent {
     ];
   }
 
-  createPdfAndSaveInFirebase() {       
+createPdfAndSaveInFirebase() {       
     console.log(this.model)
     // -     Aca se graba en Firebase v2    -
     if (this.form.invalid) {
        alert('Algunos datos obligatorios son necesarios');
     }else{
       const newForm = JSON.parse(JSON.stringify(this.model).replace(/\//g, "-"));
-      this.db.list('formulariosEmpleo').push(newForm);
-      alert("El formulario se ha cargado con éxito.")
-      window.location.reload()
-    }
-    // } else
-    //   (error) => {
-    //     console.error('error:', error);
-    //   };
-    // if (this.form.invalid) {
-    //   alert('Algunos datos obligatorios son necesarios');
-    // }
-
+      var newPostRef = this.db.list('formulariosEmpleo').push(newForm);
+      var postId = newPostRef.key;
+      this.openDialog(postId);
   }
 }
+openDialog(postId:string) {
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {data:'Formulario guardado exitosamente. Código: ' + postId});
+  dialogRef.afterClosed().subscribe(res => {
+    window.location.reload();
+  })
+}
+};
