@@ -31,6 +31,8 @@ import { FormlyFieldButton } from './formly-types//button-type.component'
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 export function validateRequired(err, field: FormlyFieldConfig) {
 	return `${field.key} es requerido`
@@ -57,10 +59,12 @@ export function IpValidatorMessage(err, field: FormlyFieldConfig) {
 }
 
 @NgModule({
-	declarations: [AppComponent, RepeatTypeComponent, NoRepeatTypeComponent, FormlyFieldButton],
+	declarations: [AppComponent, RepeatTypeComponent, NoRepeatTypeComponent, FormlyFieldButton, ConfirmDialogComponent],
+	entryComponents: [ConfirmDialogComponent],
 	imports: [
 		CommonModule,
 		BrowserModule,
+		NgbModule,
 		HttpClientModule,
 		AppRoutingModule,
 		BrowserAnimationsModule,
@@ -102,6 +106,7 @@ export function IpValidatorMessage(err, field: FormlyFieldConfig) {
 		FormlyMaterialModule,
 		FormlyModule.forRoot({ extras: { lazyRender: true } }),
 		AngularFireModule.initializeApp(environment.firebase),
+		NgbModule,
 	],
 	providers: [
 		{provide: MAT_DATE_LOCALE, useValue: 'es-ES'}
@@ -109,7 +114,5 @@ export function IpValidatorMessage(err, field: FormlyFieldConfig) {
 ],
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
-	entryComponents: [
-	  ],
 })
 export class AppModule {}

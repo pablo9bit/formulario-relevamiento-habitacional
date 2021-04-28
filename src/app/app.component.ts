@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { AngularFireDatabase } from '@angular/fire/database';
+import { MatDialog} from '@angular/material/dialog';
+import { ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
 import jsPDF from 'jspdf';
 import { validateRequired } from './app.module';
 
@@ -18,8 +20,8 @@ export class AppComponent {
 
   fields: FormlyFieldConfig[];
 
-  constructor(public db: AngularFireDatabase) {
-    this.title='FORMULARIO de Inscripción en el Registro Provincial de Capacitadores';
+  constructor(public db: AngularFireDatabase, public dialog : MatDialog) {
+    this.title='FORMULARIO de RELEVAMIENTO HABITACIONAL';
     this.form = new FormGroup({});
     this.model  = {};
     this.fields  = [
@@ -632,7 +634,6 @@ export class AppComponent {
                   { value: '574', label: 'YOFRE SUD' },
                   { value: '575', label: 'ZEPA' },
                 ],
-                required: true
               }
             },
             {
@@ -663,7 +664,6 @@ export class AppComponent {
               templateOptions: {
                 label: 'Domicilio',
                 placeholder: 'Igrese un domicilio',
-                required: true
               }
             },
             {
@@ -1054,8 +1054,9 @@ export class AppComponent {
                         { value: 'Propietario de vivienda y terreno', label: 'Propietario de vivienda y terreno' },
                         { value: 'Propietario de solo vivienda', label: 'Propietario de solo vivienda' },
                         { value: 'Ninguno', label: 'Ninguno' },
-                        { value: 'Otro', label: 'Otro' },
                         { value: 'Ocupante por préstamo', label: 'Ocupante por préstamo' },
+                        { value: 'Poseedor', label: 'Poseedor' },
+                        { value: 'Otro', label: 'Otro' },
                       ],
                       required: true
                     }
@@ -1067,6 +1068,7 @@ export class AppComponent {
                     templateOptions: {
                       label: 'Documento a presentar poseedor de titulo de dueño',
                       options: [
+                        { value: 'Escritura', label: 'Escritura' },
                         { value: 'Boleto compra-venta', label: 'Boleto compra-venta' },
                         { value: 'Sentencia firme de juicio usucapión', label: 'Sentencia firme de juicio usucapión' },
                         { value: 'Auto declaración de herederos', label: 'Auto declaración de herederos' },
@@ -1129,6 +1131,19 @@ export class AppComponent {
                         { value: 'Ladrillo (comun, hormigon, ceramico)', label: 'Ladrillo (comun, hormigon, ceramico)' },
                         { value: 'Madera', label: 'Madera' },
                         { value: 'Carton, chapa y/o desechos', label: 'Carton, chapa y/o desechos' },
+                      ]
+                    }
+                  },
+                  {
+                    key: 'Tipo de piso',
+                    type: 'select',
+                    defaultValue: null,
+                    templateOptions: {
+                      label: 'Tipo de piso',
+                      options: [
+                        { value: 'Tierra', label: 'Tierra' },
+                        { value: 'Cemento', label: 'Cemento' },
+                        { value: 'Baldosa/Cerámico/Mosaico', label: 'Baldosa/Cerámico/Mosaico' },
                       ]
                     }
                   },
@@ -1221,11 +1236,11 @@ export class AppComponent {
                     }
                   },
                   {
-                    key: '¿El acceso al agua es... ?',
+                    key: '¿El acceso al agua es?',
                     type: 'select',
                     defaultValue: null,
                     templateOptions: {
-                      label: '¿El acceso al agua es... ?',
+                      label: '¿El acceso al agua es?',
                       options: [
                         { value: 'Por cañería dentro de la vivienda', label: 'Por cañería dentro de la vivienda' },
                         { value: 'Por fuera de la vivienda pero dentro del terreno', label: 'Por fuera de la vivienda pero dentro del terreno' },
@@ -1273,6 +1288,18 @@ export class AppComponent {
                     }
                   },
                   {
+                    key: 'Uso de la energía',
+                    type: 'select',
+                    defaultValue: null,
+                    templateOptions: {
+                      label: 'Uso de la energía',
+                      options: [
+                        { value: 'Exclusivo de la vivienda', label: 'Exclusivo de la vivienda' },
+                        { value: 'Compartido', label: 'Compartido' },
+                      ]
+                    }
+                  },
+                  {
                     template: '<h3>Gas</h3>'
                   },
                   {
@@ -1284,6 +1311,7 @@ export class AppComponent {
                       options: [
                         { value: 'Gas natural', label: 'Gas natural' },
                         { value: 'Gas envasado', label: 'Gas envasado' },
+                        { value: 'Ninguno', label: 'Ninguno' },
                       ]
                     }
                   },
@@ -1375,10 +1403,11 @@ export class AppComponent {
                                 defaultValue: null,
                                 templateOptions: {
                                   required: true,
-                                  label: 'Genero',
+                                  label: 'Género',
                                   options: [
                                     { value: 'Femenino', label: 'Femenino' },
                                     { value: 'Masculino', label: 'Masculino' },
+                                    { value: 'Otro', label: 'Otro' },
                                   ]
                                 }
                               },
@@ -1489,7 +1518,8 @@ export class AppComponent {
                                 type: 'select',
                                 defaultValue: null,
                                 templateOptions: {
-                                  label: '¿Cuál)',
+                                  label: '¿Cuál?',
+                                  multiple: true,
                                   options: [
                                     { value: 'AUH', label: 'AUH' },
                                     { value: 'Beneficiario Programa empleo (XMI;PPP, PILA, PIL)', label: 'Beneficiario Programa empleo (XMI;PPP, PILA, PIL)' },
@@ -1629,24 +1659,22 @@ export class AppComponent {
     ];
   }
 
-  createPdfAndSaveInFirebase() {       
+createPdfAndSaveInFirebase() {       
     console.log(this.model)
     // -     Aca se graba en Firebase v2    -
     if (this.form.invalid) {
        alert('Algunos datos obligatorios son necesarios');
     }else{
       const newForm = JSON.parse(JSON.stringify(this.model).replace(/\//g, "-"));
-      this.db.list('formulariosEmpleo').push(newForm);
-      alert("El formulario se ha cargado con éxito.")
-      window.location.reload()
-    }
-    // } else
-    //   (error) => {
-    //     console.error('error:', error);
-    //   };
-    // if (this.form.invalid) {
-    //   alert('Algunos datos obligatorios son necesarios');
-    // }
-
+      var newPostRef = this.db.list('formulariosEmpleo').push(newForm);
+      var postId = newPostRef.key;
+      this.openDialog(postId);
   }
 }
+openDialog(postId:string) {
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {data:'Formulario guardado exitosamente. Código: ' + postId});
+  dialogRef.afterClosed().subscribe(res => {
+    window.location.reload();
+  })
+}
+};
