@@ -2,8 +2,8 @@ import { Component, Inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormlyFieldConfig, FormlyFormOptions } from '@ngx-formly/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { MatDialog} from '@angular/material/dialog';
-import { ConfirmDialogComponent} from './dialog/confirm-dialog/confirm-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 import jsPDF from 'jspdf';
 import { validateRequired } from './app.module';
 
@@ -14,23 +14,546 @@ import { validateRequired } from './app.module';
 })
 export class AppComponent {
   title: string;
-  form :FormGroup;
-  options: FormlyFormOptions = {};
+  form: FormGroup;
+  options: FormlyFormOptions = {
+    formState: {
+      selectOptionsData: {
+        LOCALIDAD: [
+          { id: '1', name: 'CORDOBA', idDepartamento: '1' },
+          { id: '20051', name: 'LOS CONDORES', idDepartamento: '591' },
+          { id: '20043', name: 'LAS BAJADAS', idDepartamento: '591' },
+          { id: '20068', name: 'SAN AGUSTIN', idDepartamento: '591' },
+          { id: '20052', name: 'LOS MOLINOS', idDepartamento: '591' },
+          { id: '20074', name: 'SEGUNDA USINA', idDepartamento: '591' },
+          { id: '20035', name: 'EMBALSE', idDepartamento: '591' },
+          { id: '20088', name: 'VILLA DEL DIQUE', idDepartamento: '591' },
+          { id: '23043', name: 'CALMAYO', idDepartamento: '591' },
+          { id: '20041', name: 'LA CRUZ', idDepartamento: '591' },
+          { id: '23045', name: 'SAN IGNACIO', idDepartamento: '591' },
+          { id: '20038', name: 'CALERAS DE CALAMUCHITA', idDepartamento: '591' },
+          { id: '20097', name: 'VILLA QUILLINZO', idDepartamento: '591' },
+          { id: '20072', name: 'SANTA ROSA DE CALAMUCHITA', idDepartamento: '591' },
+          { id: '20093', name: 'VILLA GENERAL BELGRANO', idDepartamento: '591' },
+          { id: '20087', name: 'VILLA AMANCAY', idDepartamento: '591' },
+          { id: '20053', name: 'LOS REARTES', idDepartamento: '591' },
+          { id: '23046', name: 'VILLA CIUDAD PARQUE LOS REARTES', idDepartamento: '591' },
+          { id: '20098', name: 'VILLA RUMIPAL', idDepartamento: '591' },
+          { id: '20004', name: 'AMBOY', idDepartamento: '591' },
+          { id: '20063', name: 'RIO DE LOS SAUCES', idDepartamento: '591' },
+          { id: '20018', name: 'CAÑADA DEL SAUCE', idDepartamento: '591' },
+          { id: '20054', name: 'LUTTI', idDepartamento: '591' },
+          { id: '22919', name: 'VILLA BERNA', idDepartamento: '591' },
+          { id: '20103', name: 'VILLA YACANTO', idDepartamento: '591' },
+          { id: '20042', name: 'LA CUMBRECITA', idDepartamento: '591' },
+          { id: '20009', name: 'ATHOS PAMPA', idDepartamento: '591' },
+          { id: '23060', name: 'VILLA LA MERCED', idDepartamento: '591' },
+          { id: '999991', name: 'CHAMPAQUI', idDepartamento: '591' },
+          { id: '20209', name: 'TINOCO', idDepartamento: '592' },
+          { id: '20186', name: 'MI GRANJA', idDepartamento: '592' },
+          { id: '20163', name: 'LA PUERTA', idDepartamento: '592' },
+          { id: '20183', name: 'MALVINAS ARGENTINAS', idDepartamento: '592' },
+          { id: '20125', name: 'COLONIA CAROYA', idDepartamento: '592' },
+          { id: '20127', name: 'COLONIA TIROLESA', idDepartamento: '592' },
+          { id: '20154', name: 'JESUS MARIA', idDepartamento: '592' },
+          { id: '23003', name: 'GENERAL PAZ', idDepartamento: '592' },
+          { id: '20109', name: 'ASCOCHINGA', idDepartamento: '592' },
+          { id: '20200', name: 'SALSIPUEDES', idDepartamento: '592' },
+          { id: '20214', name: 'VILLA ALLENDE', idDepartamento: '592' },
+          { id: '20105', name: 'AGUA DE ORO', idDepartamento: '592' },
+          { id: '20136', name: 'EL MANZANO', idDepartamento: '592' },
+          { id: '20185', name: 'MENDIOLAZA', idDepartamento: '592' },
+          { id: '20195', name: 'RIO CEBALLOS', idDepartamento: '592' },
+          { id: '20199', name: 'SALDAN', idDepartamento: '592' },
+          { id: '20211', name: 'UNQUILLO', idDepartamento: '592' },
+          { id: '20215', name: 'VILLA CERRO AZUL', idDepartamento: '592' },
+          { id: '20159', name: 'LA CALERA', idDepartamento: '592' },
+          { id: '20128', name: 'COLONIA VICENTE AGÜERO', idDepartamento: '592' },
+          { id: '20115', name: 'CALERA CENTRAL', idDepartamento: '592' },
+          { id: '20155', name: 'JUAREZ CELMAN', idDepartamento: '592' },
+          { id: '20205', name: 'SANTA TERESA', idDepartamento: '592' },
+          { id: '23047', name: 'ESTACION JUAREZ CELMAN', idDepartamento: '592' },
+          { id: '20149', name: 'ESTACION GENERAL PAZ', idDepartamento: '592' },
+          { id: '20162', name: 'LA GRANJA', idDepartamento: '592' },
+          { id: '20002', name: 'VILLA LOS LLANOS ', idDepartamento: '592' },
+          { id: '20326', name: 'SAN MARCOS SIERRA', idDepartamento: '593' },
+          { id: '20234', name: 'CANTERAS QUILPO', idDepartamento: '593' },
+          { id: '20281', name: 'LAS CAÑADAS', idDepartamento: '593' },
+          { id: '20243', name: 'CRUZ DEL EJE', idDepartamento: '593' },
+          { id: '20284', name: 'LAS PLAYAS', idDepartamento: '593' },
+          { id: '20246', name: 'EL BRETE', idDepartamento: '593' },
+          { id: '20289', name: 'LOS CHAÑARITOS', idDepartamento: '593' },
+          { id: '22962', name: 'CRUZ DE CAÑA', idDepartamento: '593' },
+          { id: '20299', name: 'MEDIA NARANJA', idDepartamento: '593' },
+          { id: '20335', name: 'VILLA DE SOTO', idDepartamento: '593' },
+          { id: '20227', name: 'ALTO DE LOS QUEBRACHOS', idDepartamento: '593' },
+          { id: '20231', name: 'BAÑADO DE SOTO', idDepartamento: '593' },
+          { id: '20258', name: 'GUANACO MUERTO', idDepartamento: '593' },
+          { id: '20270', name: 'LA HIGUERA', idDepartamento: '593' },
+          { id: '20311', name: 'PASO VIEJO', idDepartamento: '593' },
+          { id: '20334', name: 'TUCLAME', idDepartamento: '593' },
+          { id: '20329', name: 'SERREZUELA', idDepartamento: '593' },
+          { id: '20265', name: 'LA BATEA', idDepartamento: '593' },
+          { id: '20236', name: 'CAPILLA LA CANDELARIA', idDepartamento: '593' },
+          { id: '20260', name: 'IGLESIA VIEJA', idDepartamento: '593' },
+          { id: '20295', name: 'LOS SAUCES', idDepartamento: '593' },
+          { id: '20327', name: 'SANTA ANA', idDepartamento: '593' },
+          { id: '20312', name: 'PICHANAS', idDepartamento: '593' },
+          { id: '20323', name: 'SAN ANTONIO', idDepartamento: '593' },
+          { id: '20336', name: 'VILLA LOS LEONES', idDepartamento: '593' },
+          { id: '20263', name: 'LA ABRA', idDepartamento: '593' },
+          { id: '20349', name: 'BOUCHARDO', idDepartamento: '594' },
+          { id: '22927', name: 'ONAGOITY', idDepartamento: '594' },
+          { id: '20351', name: 'ITALO', idDepartamento: '594' },
+          { id: '20366', name: 'PINCEN', idDepartamento: '594' },
+          { id: '20352', name: 'JOVITA', idDepartamento: '594' },
+          { id: '20367', name: 'RANQUELES', idDepartamento: '594' },
+          { id: '20361', name: 'MATTALDI', idDepartamento: '594' },
+          { id: '20365', name: 'NICOLAS BRUZZONE', idDepartamento: '594' },
+          { id: '20350', name: 'HUINCA RENANCO', idDepartamento: '594' },
+          { id: '20345', name: 'DEL CAMPILLO', idDepartamento: '594' },
+          { id: '20370', name: 'VILLA HUIDOBRO', idDepartamento: '594' },
+          { id: '20372', name: 'VILLA SARMIENTO', idDepartamento: '594' },
+          { id: '20358', name: 'ESTACION LECUEDER', idDepartamento: '594' },
+          { id: '20373', name: 'VILLA VALERIA', idDepartamento: '594' },
+          { id: '30028', name: 'SILVIO PELLICO', idDepartamento: '595' },
+          { id: '20393', name: 'LA PLAYOSA', idDepartamento: '595' },
+          { id: '20375', name: 'ARROYO ALGODON', idDepartamento: '595' },
+          { id: '20396', name: 'LAS MOJARRAS', idDepartamento: '595' },
+          { id: '20391', name: 'LA LAGUNA', idDepartamento: '595' },
+          { id: '20378', name: 'AUSONIA', idDepartamento: '595' },
+          { id: '20386', name: 'ETRURIA', idDepartamento: '595' },
+          { id: '20407', name: 'SANABRIA', idDepartamento: '595' },
+          { id: '20417', name: 'VILLA NUEVA', idDepartamento: '595' },
+          { id: '20416', name: 'VILLA MARIA', idDepartamento: '595' },
+          { id: '20382', name: 'CHAZON', idDepartamento: '595' },
+          { id: '20403', name: 'PASCO', idDepartamento: '595' },
+          { id: '20412', name: 'TIO PUJIO', idDepartamento: '595' },
+          { id: '20376', name: 'ARROYO CABRAL', idDepartamento: '595' },
+          { id: '20392', name: 'LA PALESTINA', idDepartamento: '595' },
+          { id: '20411', name: 'TICINO', idDepartamento: '595' },
+          { id: '20400', name: 'LUCA', idDepartamento: '595' },
+          { id: '20545', name: 'VILLA GUTIERREZ', idDepartamento: '596' },
+          { id: '20420', name: 'AVELLANEDA', idDepartamento: '596' },
+          { id: '23010', name: 'CAÑADA DE RIO PINTO', idDepartamento: '596' },
+          { id: '20511', name: 'LOS POZOS', idDepartamento: '596' },
+          { id: '20435', name: 'DEAN FUNES', idDepartamento: '596' },
+          { id: '20535', name: 'SAN PEDRO DE TOYOS', idDepartamento: '596' },
+          { id: '22989', name: 'COPACABANA', idDepartamento: '596' },
+          { id: '20431', name: 'CHUÑA', idDepartamento: '596' },
+          { id: '20534', name: 'OLIVARES DE SAN NICOLAS', idDepartamento: '596' },
+          { id: '20487', name: 'LAS CANTERAS', idDepartamento: '596' },
+          { id: '20457', name: 'ISCHILIN', idDepartamento: '596' },
+          { id: '20458', name: 'JAIME PETER', idDepartamento: '596' },
+          { id: '20526', name: 'QUILINO ESTACION', idDepartamento: '596' },
+          { id: '20546', name: 'VILLA QUILINO', idDepartamento: '596' },
+          { id: '20549', name: 'ASSUNTA', idDepartamento: '597' },
+          { id: '20577', name: 'SANTA EUFEMIA', idDepartamento: '597' },
+          { id: '20566', name: 'LA CARLOTA', idDepartamento: '597' },
+          { id: '20569', name: 'LOS CISNES', idDepartamento: '597' },
+          { id: '22928', name: 'PACHECO DE MELO', idDepartamento: '597' },
+          { id: '20578', name: 'UCACHA', idDepartamento: '597' },
+          { id: '20559', name: 'EL RASTREADOR', idDepartamento: '597' },
+          { id: '20563', name: 'HUANCHILLAS', idDepartamento: '597' },
+          { id: '20551', name: 'BENGOLEA', idDepartamento: '597' },
+          { id: '20548', name: 'ALEJANDRO ROCA', idDepartamento: '597' },
+          { id: '20562', name: 'GENERAL DEHEZA', idDepartamento: '597' },
+          { id: '20576', name: 'REDUCCION', idDepartamento: '597' },
+          { id: '20561', name: 'GENERAL CABRERA', idDepartamento: '597' },
+          { id: '20571', name: 'OLAETA', idDepartamento: '597' },
+          { id: '20552', name: 'CARNERILLO', idDepartamento: '597' },
+          { id: '20553', name: 'CHARRAS', idDepartamento: '597' },
+          { id: '23011', name: 'PASO DEL DURAZNO', idDepartamento: '597' },
+          { id: '20600', name: 'CRUZ ALTA', idDepartamento: '598' },
+          { id: '20606', name: 'GENERAL ROCA', idDepartamento: '598' },
+          { id: '20615', name: 'LOS SURGENTES', idDepartamento: '598' },
+          { id: '20583', name: 'CAMILO ALDAO', idDepartamento: '598' },
+          { id: '20623', name: 'SAIRA', idDepartamento: '598' },
+          { id: '20616', name: 'MARCOS JUAREZ', idDepartamento: '598' },
+          { id: '20591', name: 'COLONIA ITALIANA', idDepartamento: '598' },
+          { id: '20598', name: 'CORRAL DE BUSTOS', idDepartamento: '598' },
+          { id: '20608', name: 'INRIVILLE', idDepartamento: '598' },
+          { id: '20614', name: 'LEONES', idDepartamento: '598' },
+          { id: '20605', name: 'GENERAL BALDISSERA', idDepartamento: '598' },
+          { id: '22929', name: 'VILLA ELISA', idDepartamento: '598' },
+          { id: '20585', name: 'CAVANAGH', idDepartamento: '598' },
+          { id: '20624', name: 'SALADILLO', idDepartamento: '598' },
+          { id: '20580', name: 'ARIAS', idDepartamento: '598' },
+          { id: '20609', name: 'ISLA VERDE', idDepartamento: '598' },
+          { id: '20607', name: 'GUATIMOZIN', idDepartamento: '598' },
+          { id: '20617', name: 'MONTE BUEY', idDepartamento: '598' },
+          { id: '20588', name: 'COLONIA BARGE', idDepartamento: '598' },
+          { id: '20579', name: 'ALEJO LEDESMA', idDepartamento: '598' },
+          { id: '20584', name: 'CAPITAN GENERAL BERNARDO O HIGGINS', idDepartamento: '598' },
+          { id: '20671', name: 'SAN CARLOS MINAS', idDepartamento: '599' },
+          { id: '20676', name: 'TALAINI', idDepartamento: '599' },
+          { id: '20641', name: 'ESTANCIA DE GUADALUPE', idDepartamento: '599' },
+          { id: '20631', name: 'CIENAGA DEL CORO', idDepartamento: '599' },
+          { id: '20678', name: 'TOSNO', idDepartamento: '599' },
+          { id: '20642', name: 'GUASAPAMPA', idDepartamento: '599' },
+          { id: '20647', name: 'LA PLAYA', idDepartamento: '599' },
+          { id: '20633', name: 'EL CHACHO', idDepartamento: '599' },
+          { id: '20669', name: 'RUMIACO', idDepartamento: '599' },
+          { id: '20670', name: 'RUMIGUASI', idDepartamento: '599' },
+          { id: '20627', name: 'AGUAS DE RAMON', idDepartamento: '599' },
+          { id: '20643', name: 'LA ARGENTINA', idDepartamento: '599' },
+          { id: '20657', name: 'OJO DE AGUA', idDepartamento: '599' },
+          { id: '20661', name: 'PIEDRITA BLANCA', idDepartamento: '599' },
+          { id: '21269', name: 'SAN GERONIMO', idDepartamento: '600' },
+          { id: '20718', name: 'TALA CAÑADA', idDepartamento: '600' },
+          { id: '22926', name: 'LOS TALARES', idDepartamento: '600' },
+          { id: '20716', name: 'SALSACATE', idDepartamento: '600' },
+          { id: '20712', name: 'VILLA DE POCHO', idDepartamento: '600' },
+          { id: '20705', name: 'LAS PALMAS', idDepartamento: '600' },
+          { id: '21440', name: 'CHANCANI', idDepartamento: '600' },
+          { id: '20697', name: 'LA JARILLA', idDepartamento: '600' },
+          { id: '20708', name: 'MEDANITOS', idDepartamento: '600' },
+          { id: '20732', name: 'LA CESIRA', idDepartamento: '601' },
+          { id: '20735', name: 'LEGUIZAMON', idDepartamento: '601' },
+          { id: '20739', name: 'ROSALES', idDepartamento: '601' },
+          { id: '20747', name: 'VILLA ROSSI', idDepartamento: '601' },
+          { id: '20734', name: 'LABOULAYE', idDepartamento: '601' },
+          { id: '20736', name: 'MELO', idDepartamento: '601' },
+          { id: '20745', name: 'SERRANO', idDepartamento: '601' },
+          { id: '20742', name: 'SAN JOAQUIN', idDepartamento: '601' },
+          { id: '20738', name: 'RIO BAMBA', idDepartamento: '601' },
+          { id: '20729', name: 'GENERAL LEVALLE', idDepartamento: '601' },
+          { id: '20843', name: 'SAN ROQUE', idDepartamento: '602' },
+          { id: '20754', name: 'BIALET MASSE', idDepartamento: '602' },
+          { id: '20846', name: 'SANTA MARIA DE PUNILLA', idDepartamento: '602' },
+          { id: '20771', name: 'COSQUIN', idDepartamento: '602' },
+          { id: '20761', name: 'CASA GRANDE', idDepartamento: '602' },
+          { id: '20868', name: 'VILLA PARQUE SIQUIMAN', idDepartamento: '602' },
+          { id: '20857', name: 'VALLE HERMOSO', idDepartamento: '602' },
+          { id: '20800', name: 'HUERTA GRANDE', idDepartamento: '602' },
+          { id: '20809', name: 'LA FALDA', idDepartamento: '602' },
+          { id: '20808', name: 'LA CUMBRE', idDepartamento: '602' },
+          { id: '20865', name: 'VILLA GIARDINO', idDepartamento: '602' },
+          { id: '20861', name: 'VILLA CARLOS PAZ', idDepartamento: '602' },
+          { id: '20818', name: 'LOS COCOS', idDepartamento: '602' },
+          { id: '25174', name: 'ESTANCIA VIEJA', idDepartamento: '602' },
+          { id: '20870', name: 'VILLA SANTA CRUZ DEL LAGO', idDepartamento: '602' },
+          { id: '20760', name: 'CAPILLA DEL MONTE', idDepartamento: '602' },
+          { id: '20838', name: 'SAN ANTONIO DE ARREDONDO', idDepartamento: '602' },
+          { id: '20840', name: 'SAN ESTEBAN', idDepartamento: '602' },
+          { id: '20827', name: 'MAYU SUMAJ', idDepartamento: '602' },
+          { id: '20768', name: 'CHARBONIER', idDepartamento: '602' },
+          { id: '20872', name: 'ICHO CRUZ', idDepartamento: '602' },
+          { id: '20757', name: 'CABALANGO', idDepartamento: '602' },
+          { id: '20852', name: 'TALA HUASI', idDepartamento: '602' },
+          { id: '20774', name: 'CUESTA BLANCA', idDepartamento: '602' },
+          { id: '20853', name: 'TANTI', idDepartamento: '602' },
+          { id: '20960', name: 'MONTE DE LOS GAUCHOS', idDepartamento: '603' },
+          { id: '20943', name: 'LAS ACEQUIAS', idDepartamento: '603' },
+          { id: '20874', name: 'ADELIA MARIA', idDepartamento: '603' },
+          { id: '20926', name: 'LA CAUTIVA', idDepartamento: '603' },
+          { id: '20952', name: 'LAS PEÑAS', idDepartamento: '603' },
+          { id: '20888', name: 'CHUCUL', idDepartamento: '603' },
+          { id: '20931', name: 'LA GILDA', idDepartamento: '603' },
+          { id: '20950', name: 'LAS HIGUERAS', idDepartamento: '603' },
+          { id: '20977', name: 'SAN BASILIO', idDepartamento: '603' },
+          { id: '20875', name: 'ALCIRA GIGENA', idDepartamento: '603' },
+          { id: '20971', name: 'RIO CUARTO', idDepartamento: '603' },
+          { id: '20897', name: 'CORONEL BAIGORRIA', idDepartamento: '603' },
+          { id: '20881', name: 'BERROTARAN', idDepartamento: '603' },
+          { id: '20985', name: 'VICUÑA MACKENNA', idDepartamento: '603' },
+          { id: '20910', name: 'ELENA', idDepartamento: '603' },
+          { id: '20959', name: 'MALENA', idDepartamento: '603' },
+          { id: '20920', name: 'HOLMBERG', idDepartamento: '603' },
+          { id: '20984', name: 'TOSQUITA', idDepartamento: '603' },
+          { id: '20955', name: 'LAS VERTIENTES', idDepartamento: '603' },
+          { id: '20898', name: 'CORONEL MOLDES', idDepartamento: '603' },
+          { id: '20882', name: 'BULNES', idDepartamento: '603' },
+          { id: '20988', name: 'WASHINGTON', idDepartamento: '603' },
+          { id: '20876', name: 'ALPA CORRAL', idDepartamento: '603' },
+          { id: '20974', name: 'SAMPACHO', idDepartamento: '603' },
+          { id: '20885', name: 'LA CAROLINA', idDepartamento: '603' },
+          { id: '20982', name: 'SUCO', idDepartamento: '603' },
+          { id: '20942', name: 'LAS ALBAHACAS', idDepartamento: '603' },
+          { id: '20986', name: 'VILLA EL CHACAY', idDepartamento: '603' },
+          { id: '20873', name: 'ACHIRAS', idDepartamento: '603' },
+          { id: '20886', name: 'CHAJAN', idDepartamento: '603' },
+          { id: '30002', name: 'BANDA NORTE', idDepartamento: '603' },
+          { id: '20911', name: 'ESPINILLO', idDepartamento: '603' },
+          { id: '20889', name: 'COLONIA ARGENTINA', idDepartamento: '603' },
+          { id: '20932', name: 'LA INVERNADA', idDepartamento: '603' },
+          { id: '20945', name: 'LAS CAÑITAS', idDepartamento: '603' },
+          { id: '20900', name: 'CUATRO VIENTOS', idDepartamento: '603' },
+          { id: '20967', name: 'PUEBLO ALBERDI', idDepartamento: '603' },
+          { id: '20915', name: 'GENERAL PUEYRREDON', idDepartamento: '603' },
+          { id: '20975', name: 'SAN AMBROSIO', idDepartamento: '603' },
+          { id: '21046', name: 'LA PARA', idDepartamento: '604' },
+          { id: '21104', name: 'VILLA FONTANA', idDepartamento: '604' },
+          { id: '21049', name: 'LA QUINTA', idDepartamento: '604' },
+          { id: '21060', name: 'LAS SALADAS', idDepartamento: '604' },
+          { id: '21054', name: 'LAS GRAMILLAS', idDepartamento: '604' },
+          { id: '21048', name: 'LA PUERTA', idDepartamento: '604' },
+          { id: '21081', name: 'PLAZA DE MERCEDES', idDepartamento: '604' },
+          { id: '21009', name: 'COLONIA LAS CUATRO ESQUINAS', idDepartamento: '604' },
+          { id: '21018', name: 'DIEGO DE ROJAS', idDepartamento: '604' },
+          { id: '21106', name: 'VILLA SANTA ROSA', idDepartamento: '604' },
+          { id: '21077', name: 'OBISPO TREJO', idDepartamento: '604' },
+          { id: '21010', name: 'SAGRADA FAMILIA', idDepartamento: '604' },
+          { id: '21047', name: 'LA POSTA', idDepartamento: '604' },
+          { id: '21072', name: 'MAQUINISTA GALLINI', idDepartamento: '604' },
+          { id: '21004', name: 'CHALACEA', idDepartamento: '604' },
+          { id: '21002', name: 'CAÑADA DE MACHADO', idDepartamento: '604' },
+          { id: '21019', name: 'EL ALCALDE', idDepartamento: '604' },
+          { id: '22916', name: 'MONTE DEL ROSARIO', idDepartamento: '604' },
+          { id: '21022', name: 'EL CRISPIN', idDepartamento: '604' },
+          { id: '21013', name: 'COMECHINGONES', idDepartamento: '604' },
+          { id: '21095', name: 'RIO PRIMERO', idDepartamento: '604' },
+          { id: '20991', name: 'ATAHONA', idDepartamento: '604' },
+          { id: '21080', name: 'PIQUILLIN', idDepartamento: '604' },
+          { id: '21029', name: 'ESQUINA', idDepartamento: '604' },
+          { id: '21091', name: 'PUNTA DEL AGUA', idDepartamento: '604' },
+          { id: '20997', name: 'CAPILLA DE LOS REMEDIOS', idDepartamento: '604' },
+          { id: '21074', name: 'MONTECRISTO', idDepartamento: '604' },
+          { id: '21079', name: 'PEDRO E VIVAS', idDepartamento: '604' },
+          { id: '21055', name: 'LAS HERAS', idDepartamento: '604' },
+          { id: '999993', name: 'BLAS DE ROSALES', idDepartamento: '604' },
+          { id: '21024', name: 'EL QUEBRACHO', idDepartamento: '604' },
+          { id: '21168', name: 'LA RINCONADA', idDepartamento: '605' },
+          { id: '21117', name: 'CANDELARIA NORTE', idDepartamento: '605' },
+          { id: '21198', name: 'PUESTO DE CASTRO', idDepartamento: '605' },
+          { id: '21153', name: 'GUTEMBERG', idDepartamento: '605' },
+          { id: '21152', name: 'EUFRASIO LOZA', idDepartamento: '605' },
+          { id: '21218', name: 'SEBASTIAN EL CANO', idDepartamento: '605' },
+          { id: '21184', name: 'LOS HOYOS', idDepartamento: '605' },
+          { id: '21222', name: 'VILLA DE MARIA', idDepartamento: '605' },
+          { id: '21203', name: 'RAYO CORTADO', idDepartamento: '605' },
+          { id: '21215', name: 'SANTA ELENA', idDepartamento: '605' },
+          { id: '21123', name: 'CHAÑAR VIEJO', idDepartamento: '605' },
+          { id: '22990', name: 'CERRO COLORADO', idDepartamento: '605' },
+          { id: '21150', name: 'ENCRUCIJADA', idDepartamento: '605' },
+          { id: '21156', name: 'LA CAÑADA', idDepartamento: '605' },
+          { id: '21265', name: 'POZO DEL MOLLE', idDepartamento: '606' },
+          { id: '21230', name: 'CARRILOBO', idDepartamento: '606' },
+          { id: '21226', name: 'CALCHIN', idDepartamento: '606' },
+          { id: '21227', name: 'CALCHIN OESTE', idDepartamento: '606' },
+          { id: '21251', name: 'LOS CHAÑARITOS', idDepartamento: '606' },
+          { id: '21229', name: 'CAPILLA DEL CARMEN', idDepartamento: '606' },
+          { id: '21253', name: 'LUQUE', idDepartamento: '606' },
+          { id: '21232', name: 'COLAZO', idDepartamento: '606' },
+          { id: '21272', name: 'SANTIAGO TEMPLE', idDepartamento: '606' },
+          { id: '21250', name: 'LAS JUNTURAS', idDepartamento: '606' },
+          { id: '21233', name: 'COLONIA VIDELA', idDepartamento: '606' },
+          { id: '21255', name: 'MATORRALES', idDepartamento: '606' },
+          { id: '21274', name: 'VILLA DEL ROSARIO', idDepartamento: '606' },
+          { id: '21266', name: 'RINCON', idDepartamento: '606' },
+          { id: '21241', name: 'IMPIRA (PUEBLO LUDUEÑA)', idDepartamento: '606' },
+          { id: '21257', name: 'ONCATIVO', idDepartamento: '606' },
+          { id: '21254', name: 'MANFREDI', idDepartamento: '606' },
+          { id: '21235', name: 'COSTASACATE', idDepartamento: '606' },
+          { id: '21247', name: 'LAGUNA LARGA', idDepartamento: '606' },
+          { id: '21261', name: 'PILAR', idDepartamento: '606' },
+          { id: '21268', name: 'RIO SEGUNDO', idDepartamento: '606' },
+          { id: '21231', name: 'CAÑADA DE MACHADO SUD', idDepartamento: '606' },
+          { id: '21326', name: 'LAS CALLES', idDepartamento: '607' },
+          { id: '21331', name: 'LAS RABONAS', idDepartamento: '607' },
+          { id: '21344', name: 'NONO', idDepartamento: '607' },
+          { id: '21282', name: 'ARROYO DE LOS PATOS', idDepartamento: '607' },
+          { id: '21339', name: 'MINA CLAVERO', idDepartamento: '607' },
+          { id: '21370', name: 'VILLA CURA BROCHERO', idDepartamento: '607' },
+          { id: '21358', name: 'SAN LORENZO', idDepartamento: '607' },
+          { id: '21278', name: 'AMBUL', idDepartamento: '607' },
+          { id: '21348', name: 'PANAHOLMA', idDepartamento: '607' },
+          { id: '22980', name: 'SAUCE ARRIBA', idDepartamento: '607' },
+          { id: '30000', name: 'VILLA SARMIENTO (SA)', idDepartamento: '607' },
+          { id: '21359', name: 'SAN PEDRO', idDepartamento: '607' },
+          { id: '21318', name: 'LA CORTADERA', idDepartamento: '607' },
+          { id: '21362', name: 'SAN VICENTE', idDepartamento: '607' },
+          { id: '21276', name: 'ALTAUTINA', idDepartamento: '607' },
+          { id: '999992', name: 'EL VOLCAN', idDepartamento: '607' },
+          { id: '999994', name: 'VILLA BENEGAS', idDepartamento: '607' },
+          { id: '21347', name: 'PAMPA DE ACHALA', idDepartamento: '607' },
+          { id: '999995', name: 'LOS CERROS', idDepartamento: '607' },
+          { id: '999996', name: 'LOS ESPINILLOS', idDepartamento: '607' },
+          { id: '21360', name: 'SAN RAFAEL', idDepartamento: '607' },
+          { id: '21419', name: 'LOS HORNILLOS', idDepartamento: '608' },
+          { id: '21403', name: 'LA POBLACION', idDepartamento: '608' },
+          { id: '21429', name: 'QUEBRACHO LADEADO', idDepartamento: '608' },
+          { id: '21402', name: 'LA PAZ', idDepartamento: '608' },
+          { id: '21446', name: 'VILLA DE LAS ROSAS', idDepartamento: '608' },
+          { id: '21423', name: 'LUYABA', idDepartamento: '608' },
+          { id: '21412', name: 'LAS TAPIAS', idDepartamento: '608' },
+          { id: '21447', name: 'VILLA DOLORES', idDepartamento: '608' },
+          { id: '21386', name: 'CONLARA', idDepartamento: '608' },
+          { id: '21439', name: 'SAN JOSE', idDepartamento: '608' },
+          { id: '21416', name: 'LOS CERRILLOS', idDepartamento: '608' },
+          { id: '21395', name: 'EL MANANTIAL', idDepartamento: '608' },
+          { id: '21438', name: 'SAN JAVIER Y YACANTO', idDepartamento: '608' },
+          { id: '21448', name: 'YACANTO', idDepartamento: '608' },
+          { id: '21495', name: 'COLONIA SAN PEDRO', idDepartamento: '609' },
+          { id: '21503', name: 'COLONIA VIGNAUD', idDepartamento: '609' },
+          { id: '21573', name: 'SEEBER', idDepartamento: '609' },
+          { id: '21554', name: 'MORTEROS', idDepartamento: '609' },
+          { id: '21457', name: 'BRINKMANN', idDepartamento: '609' },
+          { id: '21560', name: 'PORTEÑA', idDepartamento: '609' },
+          { id: '21523', name: 'FREYRE', idDepartamento: '609' },
+          { id: '21482', name: 'COLONIA ITURRASPE', idDepartamento: '609' },
+          { id: '23022', name: 'COLONIA 10 DE JULIO', idDepartamento: '609' },
+          { id: '21548', name: 'ESTACION LUXARDO', idDepartamento: '609' },
+          { id: '21467', name: 'COLONIA ANITA', idDepartamento: '609' },
+          { id: '21534', name: 'LA PAQUITA', idDepartamento: '609' },
+          { id: '21567', name: 'QUEBRACHO HERRADO', idDepartamento: '609' },
+          { id: '21502', name: 'COLONIA VALTELINA', idDepartamento: '609' },
+          { id: '21515', name: 'EL FORTIN', idDepartamento: '609' },
+          { id: '21510', name: 'DEVOTO', idDepartamento: '609' },
+          { id: '21451', name: 'ALTOS DE CHIPION', idDepartamento: '609' },
+          { id: '21487', name: 'COLONIA MARINA', idDepartamento: '609' },
+          { id: '21493', name: 'COLONIA PROSPERIDAD', idDepartamento: '609' },
+          { id: '21450', name: 'ALICIA', idDepartamento: '609' },
+          { id: '21572', name: 'SATURNINO MARIA LASPIUR', idDepartamento: '609' },
+          { id: '21543', name: 'LAS VARAS', idDepartamento: '609' },
+          { id: '21531', name: 'LA FRANCIA', idDepartamento: '609' },
+          { id: '21455', name: 'BALNEARIA', idDepartamento: '609' },
+          { id: '21551', name: 'MIRAMAR DE ANSENUZA', idDepartamento: '609' },
+          { id: '21544', name: 'LAS VARILLAS', idDepartamento: '609' },
+          { id: '21494', name: 'COLONIA SAN BARTOLOME', idDepartamento: '609' },
+          { id: '21549', name: 'MARULL', idDepartamento: '609' },
+          { id: '21518', name: 'EL TIO', idDepartamento: '609' },
+          { id: '21512', name: 'EL ARAÑADO', idDepartamento: '609' },
+          { id: '21579', name: 'VILLA SAN ESTEBAN', idDepartamento: '609' },
+          { id: '22976', name: 'COLONIA LAS PICHANAS', idDepartamento: '609' },
+          { id: '21516', name: 'EL FUERTECITO', idDepartamento: '609' },
+          { id: '21574', name: 'TORO PUJIO', idDepartamento: '609' },
+          { id: '21568', name: 'SACANTA', idDepartamento: '609' },
+          { id: '21453', name: 'ARROYITO', idDepartamento: '609' },
+          { id: '21537', name: 'LA TORDILLA', idDepartamento: '609' },
+          { id: '21575', name: 'TRANSITO', idDepartamento: '609' },
+          { id: '21469', name: 'COLONIA BEIRO', idDepartamento: '609' },
+          { id: '21578', name: 'VILLA CONCEPCION DEL TIO', idDepartamento: '609' },
+          { id: '21476', name: 'COLONIA DOS HERMANOS', idDepartamento: '609' },
+          { id: '21550', name: 'MAUNIER', idDepartamento: '609' },
+          { id: '21569', name: 'SAN FRANCISCO (SJ)', idDepartamento: '609' },
+          { id: '21558', name: 'PLAZA SAN FRANCISCO', idDepartamento: '609' },
+          { id: '999997', name: 'SAUZE', idDepartamento: '609' },
+          { id: '21637', name: 'TOLEDO', idDepartamento: '610' },
+          { id: '21620', name: 'LOZADA', idDepartamento: '610' },
+          { id: '21589', name: 'BOUWER', idDepartamento: '610' },
+          { id: '21624', name: 'MONTE RALO', idDepartamento: '610' },
+          { id: '21629', name: 'RAFAEL GARCIA', idDepartamento: '610' },
+          { id: '30001', name: 'LOS CEDROS', idDepartamento: '610' },
+          { id: '21598', name: 'DESPEÑADEROS', idDepartamento: '610' },
+          { id: '23041', name: 'BARRIO GILBERT - 1 DE MAYO', idDepartamento: '610' },
+          { id: '21635', name: 'VILLA PARQUE SANTA ANA', idDepartamento: '610' },
+          { id: '21621', name: 'MALAGUEÑO', idDepartamento: '610' },
+          { id: '21648', name: 'YOCSINA', idDepartamento: '610' },
+          { id: '21641', name: 'VILLA DEL PRADO', idDepartamento: '610' },
+          { id: '21596', name: 'VILLA SAN ISIDRO', idDepartamento: '610' },
+          { id: '21638', name: 'VALLE DE ANISACATE', idDepartamento: '610' },
+          { id: '30027', name: 'ANISACATE', idDepartamento: '610' },
+          { id: '21603', name: 'JOSE DE LA QUINTANA', idDepartamento: '610' },
+          { id: '21582', name: 'ALTA GRACIA', idDepartamento: '610' },
+          { id: '21643', name: 'VILLA LA BOLSA', idDepartamento: '610' },
+          { id: '21645', name: 'VILLA LOS AROMOS', idDepartamento: '610' },
+          { id: '21644', name: 'LA RANCHERITA - LAS CASCADAS', idDepartamento: '610' },
+          { id: '21634', name: 'SAN NICOLAS', idDepartamento: '610' },
+          { id: '21606', name: 'FALDA DEL CARMEN', idDepartamento: '610' },
+          { id: '21612', name: 'LA SERRANITA', idDepartamento: '610' },
+          { id: '21611', name: 'LA PAISANITA', idDepartamento: '610' },
+          { id: '21640', name: 'VILLA CIUDAD DE AMERICA', idDepartamento: '610' },
+          { id: '21627', name: 'POTRERO DE GARAY', idDepartamento: '610' },
+          { id: '21633', name: 'SAN CLEMENTE', idDepartamento: '610' },
+          { id: '22956', name: 'BAJO CHICO', idDepartamento: '610' },
+          { id: '21590', name: 'BUENA VISTA', idDepartamento: '610' },
+          { id: '21593', name: 'CAPILLA DE COSME', idDepartamento: '610' },
+          { id: '21689', name: 'SAN FRANCISCO DEL CHAÑAR', idDepartamento: '611' },
+          { id: '21654', name: 'CAMINIAGA', idDepartamento: '611' },
+          { id: '21687', name: 'POZO NUEVO', idDepartamento: '611' },
+          { id: '21660', name: 'CHUÑA HUASI', idDepartamento: '611' },
+          { id: '20399', name: 'LOS ZORROS', idDepartamento: '612' },
+          { id: '21713', name: 'JAMES CRAIK', idDepartamento: '612' },
+          { id: '21718', name: 'OLIVA', idDepartamento: '612' },
+          { id: '21707', name: 'DALMACIO VELEZ', idDepartamento: '612' },
+          { id: '21719', name: 'PAMPAYASTA NORTE', idDepartamento: '612' },
+          { id: '21720', name: 'PAMPAYASTA SUR', idDepartamento: '612' },
+          { id: '21715', name: 'LAS PERDICES', idDepartamento: '612' },
+          { id: '21712', name: 'HERNANDO', idDepartamento: '612' },
+          { id: '21721', name: 'PUNTA DEL AGUA', idDepartamento: '612' },
+          { id: '21700', name: 'COLONIA ALMADA', idDepartamento: '612' },
+          { id: '21711', name: 'GENERAL FOTHERINGHAM', idDepartamento: '612' },
+          { id: '21724', name: 'VILLA ASCASUBI', idDepartamento: '612' },
+          { id: '21714', name: 'LAS ISLETILLAS', idDepartamento: '612' },
+          { id: '21723', name: 'TANCACHA', idDepartamento: '612' },
+          { id: '21722', name: 'RIO TERCERO', idDepartamento: '612' },
+          { id: '21706', name: 'CORRALITO', idDepartamento: '612' },
+          { id: '21697', name: 'ALMAFUERTE', idDepartamento: '612' },
+          { id: '21734', name: 'CAPILLA DE SITON', idDepartamento: '613' },
+          { id: '21737', name: 'CAÑADA DE LUQUE', idDepartamento: '613' },
+          { id: '21732', name: 'CANDELARIA', idDepartamento: '613' },
+          { id: '21764', name: 'LOS MISTOLES', idDepartamento: '613' },
+          { id: '21783', name: 'SIMBOLAR', idDepartamento: '613' },
+          { id: '21762', name: 'LAS PEÑAS', idDepartamento: '613' },
+          { id: '21786', name: 'VILLA DEL TOTORAL', idDepartamento: '613' },
+          { id: '21784', name: 'SINSACATE', idDepartamento: '613' },
+          { id: '21782', name: 'SARMIENTO', idDepartamento: '613' },
+          { id: '21778', name: 'SANTA CATALINA', idDepartamento: '613' },
+          { id: '21758', name: 'LA PAMPA', idDepartamento: '613' },
+          { id: '21765', name: 'MACHA', idDepartamento: '613' },
+          { id: '21861', name: 'ROSARIO DEL SALADILLO', idDepartamento: '614' },
+          { id: '21829', name: 'LAS ARRIAS', idDepartamento: '614' },
+          { id: '21807', name: 'EL RODEO', idDepartamento: '614' },
+          { id: '21798', name: 'CHURQUI CAÑADA', idDepartamento: '614' },
+          { id: '21851', name: 'SAN JOSE DE LA DORMIDA', idDepartamento: '614' },
+          { id: '21859', name: 'VILLA TULUMBA', idDepartamento: '614' },
+          { id: '21853', name: 'SAN PEDRO NORTE', idDepartamento: '614' },
+          { id: '21852', name: 'SAN JOSE DE LAS SALINAS', idDepartamento: '614' },
+          { id: '21840', name: 'LUCIO V. MANSILLA', idDepartamento: '614' },
+          { id: '999998', name: 'LA TOMA', idDepartamento: '614' },
+          { id: '999999', name: 'EL BAÑADO', idDepartamento: '614' },
+          { id: '21815', name: 'ISLA DE SAN ANTONIO', idDepartamento: '614' },
+          { id: '21834', name: 'LAS MASITAS', idDepartamento: '614' },
+          { id: '21856', name: 'SANTA CRUZ', idDepartamento: '614' },
+          { id: '21820', name: 'LA CAÑADA SANTA CRUZ', idDepartamento: '614' },
+          { id: '21911', name: 'NOETINGER', idDepartamento: '615' },
+          { id: '21921', name: 'SAN MARCOS SUD', idDepartamento: '615' },
+          { id: '21873', name: 'CHILIBROSTE', idDepartamento: '615' },
+          { id: '21908', name: 'MONTE LEÑA', idDepartamento: '615' },
+          { id: '21909', name: 'MONTE MAIZ', idDepartamento: '615' },
+          { id: '21917', name: 'SAN ANTONIO DE LITIN', idDepartamento: '615' },
+          { id: '21874', name: 'CINTRA', idDepartamento: '615' },
+          { id: '21893', name: 'JUSTINIANO POSSE', idDepartamento: '615' },
+          { id: '21867', name: 'BELL VILLE', idDepartamento: '615' },
+          { id: '21875', name: 'COLONIA BISMARCK', idDepartamento: '615' },
+          { id: '22930', name: 'VILLA LOS PATOS', idDepartamento: '615' },
+          { id: '21868', name: 'BENJAMIN GOULD', idDepartamento: '615' },
+          { id: '21876', name: 'COLONIA BREMEN', idDepartamento: '615' },
+          { id: '21929', name: 'WENCESLAO ESCALANTE', idDepartamento: '615' },
+          { id: '21910', name: 'MORRISON', idDepartamento: '615' },
+          { id: '21915', name: 'PUEBLO ITALIANO', idDepartamento: '615' },
+          { id: '21898', name: 'LABORDE', idDepartamento: '615' },
+          { id: '21912', name: 'ORDOÑEZ', idDepartamento: '615' },
+          { id: '21862', name: 'ALTO ALEGRE', idDepartamento: '615' },
+          { id: '21871', name: 'CANALS', idDepartamento: '615' },
+          { id: '21864', name: 'BALLESTEROS', idDepartamento: '615' },
+          { id: '21865', name: 'BALLESTEROS SUD', idDepartamento: '615' },
+          { id: '21891', name: 'IDIAZABAL', idDepartamento: '615' },
+          { id: '21914', name: 'PASCANAS', idDepartamento: '615' },
+          { id: '21863', name: 'ANA ZUMARAN', idDepartamento: '615' },
+          { id: '21928', name: 'VIAMONTE', idDepartamento: '615' },
+          { id: '23026', name: 'RAMON J CARCANO', idDepartamento: '615' },
+          { id: '21880', name: 'CORRAL DEL BAJO', idDepartamento: '615' },
+          { id: '21926', name: 'SANTA MARIA', idDepartamento: '615' },
+        ]
+      }
+    }
+  };
   model: any;
 
   fields: FormlyFieldConfig[];
 
-  constructor(public db: AngularFireDatabase, public dialog : MatDialog) {
-    this.title='FORMULARIO de RELEVAMIENTO HABITACIONAL';
+  constructor(public db: AngularFireDatabase, public dialog: MatDialog) {
+    this.title = 'FORMULARIO de RELEVAMIENTO HABITACIONAL';
     this.form = new FormGroup({});
-    this.model  = {};
-    this.fields  = [
+    this.model = {};
+    this.fields = [
       {
         className: 'datos-identificacion',
         template: '<div class="coltit"><h2 style="color:#53aae0;">Identificacion territorial:</h2></div>',
       },
-  
-  
+
+
       // EMPRESA
       {
         key: 'Identificación territorial',
@@ -40,19 +563,61 @@ export class AppComponent {
         },
         fieldArray: {
           fieldGroup: [
-  
             {
-              key: 'Localidad',
-              type: 'input',
+              key: 'DEPARTAMENTO',
+              type: 'select',
               defaultValue: null,
               templateOptions: {
-                label: 'Localidad',
-                placeholder: 'Ingrese una localidad',
-                required: true,
+                label: 'Departamento',
+                options: [
+                  { value: '1', label: 'CAPITAL' },
+                  { value: '591', label: 'CALAMUCHITA' },
+                  { value: '592', label: 'COLON' },
+                  { value: '593', label: 'CRUZ DEL EJE' },
+                  { value: '594', label: 'GENERAL ROCA' },
+                  { value: '595', label: 'GENERAL SAN MARTIN' },
+                  { value: '596', label: 'ISCHILIN' },
+                  { value: '597', label: 'JUAREZ CELMAN' },
+                  { value: '598', label: 'MARCOS JUAREZ' },
+                  { value: '599', label: 'MINAS' },
+                  { value: '600', label: 'POCHO' },
+                  { value: '601', label: 'PDTE. ROQUE SAENZ PEÑA' },
+                  { value: '602', label: 'PUNILLA' },
+                  { value: '603', label: 'RIO CUARTO' },
+                  { value: '604', label: 'RIO PRIMERO' },
+                  { value: '605', label: 'RIO SECO' },
+                  { value: '606', label: 'RIO SEGUNDO' },
+                  { value: '607', label: 'SAN ALBERTO' },
+                  { value: '608', label: 'SAN JAVIER' },
+                  { value: '609', label: 'SAN JUSTO' },
+                  { value: '610', label: 'SANTA MARIA' },
+                  { value: '611', label: 'SOBREMONTE' },
+                  { value: '612', label: 'TERCERO ARRIBA' },
+                  { value: '613', label: 'TOTORAL' },
+                  { value: '614', label: 'TULUMBA' },
+                  { value: '615', label: 'UNION' },
+                ]
               }
             },
             {
-              key: 'Barrio',
+              key: 'LOCALIDAD',
+              type: 'select',
+              defaultValue: null,
+              templateOptions: {
+                label: 'Localidad',
+                required: true,
+                options: [],
+                valueProp: 'id',
+                labelProp: 'name',
+              },
+              expressionProperties: {
+                'templateOptions.options': 'formState.selectOptionsData.LOCALIDAD.filter(LOCALIDAD => LOCALIDAD.idDepartamento === model.DEPARTAMENTO)',
+                // reset model when updating select options
+                'model.LOCALIDAD': `field.templateOptions.options.find(o => o.id === model.LOCALIDAD) ? model.LOCALIDAD:null`,
+              },
+            },
+            {
+              key: 'id_barrio_cba',
               type: 'select',
               defaultValue: null,
               templateOptions: {
@@ -634,6 +1199,23 @@ export class AppComponent {
                   { value: '574', label: 'YOFRE SUD' },
                   { value: '575', label: 'ZEPA' },
                 ],
+              },
+              expressionProperties: {
+                hide: 'model.LOCALIDAD != "1"',
+                show: 'model.LOCALIDAD == "1"'
+              }
+            },
+            {
+              key: 'Barrio',
+              type: 'input',
+              defaultValue: null,
+              templateOptions: {
+                label: 'Barrio',
+                placeholder: 'Ingrese un barrio',
+              },
+              expressionProperties: {
+                hide: 'model.LOCALIDAD == "1"',
+                show: 'model.LOCALIDAD != "1"'
               }
             },
             {
@@ -683,7 +1265,7 @@ export class AppComponent {
         className: 'datos-entrevista',
         template: '<div class="coltit"><h2 style="color:#53aae0;">Entrevista:</h2></div>',
       },
-  
+
       {
         key: 'Entrevista',
         type: 'no repeat',
@@ -745,7 +1327,7 @@ export class AppComponent {
               templateOptions: {
                 label: 'Nombre del entrevistador',
                 placeholder: 'Igrese un nombre',
-  
+
               },
               expressionProperties: {
                 hide: 'model.realiza_entrevista == "Si"',
@@ -766,34 +1348,6 @@ export class AppComponent {
                 hide: 'model.realiza_entrevista == "Si"',
                 show: 'model.realiza_entrevista == "No"',
                 'templateOptions.required': 'model.realiza_entrevista == "No"'
-              }
-            },
-          ]
-        }
-      },
-      //------------------------------------------------------------------------------------------------------------------------
-      {
-        className: 'datos-deteccion',
-        template: '<div class="coltit"><h2 style="color:#53aae0;">Detección de viviendas en el lote:</h2></div>',
-      },
-  
-      {
-        key: 'Detección de vivienda en el lote',
-        type: 'no repeat',
-        templateOptions: {
-          addText: 'Ingresar datos de la detección',
-        },
-        fieldArray: {
-          fieldGroup: [
-            {
-              key: '¿Cuántas viviendas hay en el lote?',
-              type: 'input',
-              defaultValue: null,
-              templateOptions: {
-                type: 'number',
-                label: '¿Cuántas viviendas hay en el lote?',
-                placeholder: 'Igrese una cantidad',
-                required: true,
               }
             },
           ]
@@ -1023,6 +1577,17 @@ export class AppComponent {
               }
             },
             {
+              key: '¿Cuántas viviendas hay en el lote?',
+              type: 'input',
+              defaultValue: null,
+              templateOptions: {
+                type: 'number',
+                label: '¿Cuántas viviendas hay en el lote?',
+                placeholder: 'Igrese una cantidad',
+                required: true,
+              }
+            },
+            {
               key: 'Viviendas',
               type: 'repeat',
               templateOptions: {
@@ -1037,7 +1602,7 @@ export class AppComponent {
                     key: 'numero_vivienda',
                     type: 'input',
                     defaultValue: null,
-                    templateOptions:{
+                    templateOptions: {
                       label: 'Numero de vivienda',
                       placeholder: 'Ingrese el número que identifique la vivienda',
                       type: 'number',
@@ -1074,6 +1639,7 @@ export class AppComponent {
                         { value: 'Auto declaración de herederos', label: 'Auto declaración de herederos' },
                         { value: 'Declaración jurada de herederos con acreditación de vinculo', label: 'Declaración jurada de herederos con acreditación de vinculo' },
                         { value: 'Resolución de inscripción en registro de poseedor LEY 9150', label: 'Resolución de inscripción en registro de poseedor LEY 9150' },
+                        { value: 'Nada', label: 'Nada' },
                       ],
                     },
                   },
@@ -1092,7 +1658,7 @@ export class AppComponent {
                         { value: 'Otra situación', label: 'Otra situación' },
                       ],
                     },
-                    expressionProperties:{
+                    expressionProperties: {
                       show: 'model.tipo_propietario == "Ocupante por préstamo"',
                       hide: 'model.tipo_propietario == "Propietario de vivienda y terreno" || model.tipo_propietario == "Propietario de solo vivienda" || model.tipo_propietario == "Ninguno"  || model.tipo_propietario == "Otro" '
                     }
@@ -1322,7 +1888,7 @@ export class AppComponent {
                     key: 'Cantidad de hogares',
                     type: 'input',
                     defaultValue: null,
-                    templateOptions:{
+                    templateOptions: {
                       label: 'Cantidad de hogares',
                       placeholder: 'Ingrese la cantidad de hogares en la vivienda',
                       type: 'number',
@@ -1341,7 +1907,7 @@ export class AppComponent {
                           key: 'numero_hogar',
                           type: 'input',
                           defaultValue: null,
-                          templateOptions:{
+                          templateOptions: {
                             label: 'Numero de hogar',
                             placeholder: 'Ingrese un numero de hogar',
                             type: 'number',
@@ -1412,12 +1978,28 @@ export class AppComponent {
                                 }
                               },
                               {
-                                key: 'Nacionalidad',
+                                key: '¿Está embarazada?',
                                 type: 'select',
                                 defaultValue: null,
                                 templateOptions:{
-                                  label: 'Nacionalidad',
+                                  label: '¿Está embarazada?',
                                   options:[
+                                    { value: 'No', label: 'No' },
+                                    { value: 'Si', label: 'Si' },
+                                  ]
+                                },
+                                expressionProperties:{
+                                  hide: 'model.Genero != "Femenino"',
+                                  show: 'model.Genero == "Femenino"'
+                                }
+                              },
+                              {
+                                key: 'Nacionalidad',
+                                type: 'select',
+                                defaultValue: null,
+                                templateOptions: {
+                                  label: 'Nacionalidad',
+                                  options: [
                                     { value: 'Argentina', label: 'Argentina' },
                                     { value: 'Brasil', label: 'Brasil' },
                                     { value: 'Bolivia', label: 'Bolivia' },
@@ -1433,9 +2015,9 @@ export class AppComponent {
                                 key: 'Estado Civil',
                                 type: 'select',
                                 defaultValue: null,
-                                templateOptions:{
+                                templateOptions: {
                                   label: 'Estado Civil',
-                                  options:[
+                                  options: [
                                     { value: 'Soltero/a', label: 'Soltero/a' },
                                     { value: 'Casado/a', label: 'Casado/a' },
                                     { value: 'Concubino/a', label: 'Concubino/a' },
@@ -1539,7 +2121,7 @@ export class AppComponent {
                                   hide: 'model.cobra_beneficio_social == "No"',
                                   show: 'model.cobra_beneficio_social == "Si"',
                                   'templateOptions.required': 'model.cobra_beneficio_social == "Si"',
-  
+
                                 }
                               },
                               {
@@ -1631,16 +2213,16 @@ export class AppComponent {
                                 templateOptions: {
                                   required: true,
                                   label: 'Vínculo con el solicitante',
-                                  options:[
-                                    { value: '1.	Jefe/a del Hogar', label: '1.	Jefe/a del Hogar'},
-                                    { value: '2.	Cónyuge/pareja', label: '2.	Cónyuge/pareja'},
-                                    { value: '3.	Hijo/a', label: '3.	Hijo/a'},
-                                    { value: '4.	Yerno/nuera', label: '4.	Yerno/nuera'},
-                                    { value: '5.	Nieto/a', label: '5.	Nieto/a'},
-                                    { value: '6.	Padre/madre', label: '6.	Padre/madre'},
-                                    { value: '7.	Suegro/a', label: '7.	Suegro/a'},
-                                    { value: '8.	Otros familiares', label: '8.	Otros familiares'},
-                                    { value: '9.	Otros no Familiares', label: '9.	Otros no Familiares'},
+                                  options: [
+                                    { value: '1.	Jefe/a del Hogar', label: '1.	Jefe/a del Hogar' },
+                                    { value: '2.	Cónyuge/pareja', label: '2.	Cónyuge/pareja' },
+                                    { value: '3.	Hijo/a', label: '3.	Hijo/a' },
+                                    { value: '4.	Yerno/nuera', label: '4.	Yerno/nuera' },
+                                    { value: '5.	Nieto/a', label: '5.	Nieto/a' },
+                                    { value: '6.	Padre/madre', label: '6.	Padre/madre' },
+                                    { value: '7.	Suegro/a', label: '7.	Suegro/a' },
+                                    { value: '8.	Otros familiares', label: '8.	Otros familiares' },
+                                    { value: '9.	Otros no Familiares', label: '9.	Otros no Familiares' },
                                   ]
                                 }
                               },
@@ -1659,22 +2241,22 @@ export class AppComponent {
     ];
   }
 
-createPdfAndSaveInFirebase() {       
+  createPdfAndSaveInFirebase() {
     console.log(this.model)
     // -     Aca se graba en Firebase v2    -
     if (this.form.invalid) {
-       alert('Algunos datos obligatorios son necesarios');
-    }else{
+      alert('Algunos datos obligatorios son necesarios');
+    } else {
       const newForm = JSON.parse(JSON.stringify(this.model).replace(/\//g, "-"));
       var newPostRef = this.db.list('formulariosEmpleo').push(newForm);
       var postId = newPostRef.key;
       this.openDialog(postId);
+    }
   }
-}
-openDialog(postId:string) {
-  const dialogRef = this.dialog.open(ConfirmDialogComponent, {data:'Formulario guardado exitosamente. Código: ' + postId});
-  dialogRef.afterClosed().subscribe(res => {
-    window.location.reload();
-  })
-}
+  openDialog(postId: string) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, { data: 'Formulario guardado exitosamente. Código: ' + postId });
+    dialogRef.afterClosed().subscribe(res => {
+      window.location.reload();
+    })
+  }
 };
