@@ -33,6 +33,8 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
+
 
 export function validateRequired(err, field: FormlyFieldConfig) {
 	return `${field.key} es requerido`
@@ -80,7 +82,7 @@ export function IpValidatorMessage(err, field: FormlyFieldConfig) {
 		MatNativeDateModule,
 		MatSliderModule,
 		MatCardModule,
-
+		FormlyBootstrapModule,
 		FormlyMatDatepickerModule,
 		FormlyMatToggleModule,
 

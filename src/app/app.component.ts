@@ -2240,19 +2240,43 @@ export class AppComponent {
       },
     ];
   }
-
   createPdfAndSaveInFirebase() {
-    console.log(this.model)
-    // -     Aca se graba en Firebase v2    -
     if (this.form.invalid) {
-      alert('Algunos datos obligatorios son necesarios');
-    } else {
+      console.log(this.form.controls)
+      var fields: any = this.form.controls
+      var txt_alert = ""
+      for (var seccion of Object.keys(fields)) {
+        try {
+          for (var clave of Object.keys(fields[seccion]["controls"][0]["controls"])) {
+            let campo = fields[seccion]["controls"][0]["controls"][clave]
+            try {
+              let campos_internos = campo["controls"][0]["controls"]
+              for (let campos of Object.keys(campos_internos)) {
+                if (campos_internos[campos]["status"] == "INVALID") {
+                  txt_alert = txt_alert + "Falta llenar el campo " + campos + " en " + seccion + "\n"
+                }
+              }
+            } catch {
+
+              if (campo["status"] == "INVALID") {
+                txt_alert = txt_alert + "Falta llenar el campo " + clave + " en " + seccion + "\n"
+              }
+            }
+          }
+        } catch (e) {
+          console.log(e)
+        }
+      }
+      alert(txt_alert)
+    } 
+    else {
       const newForm = JSON.parse(JSON.stringify(this.model).replace(/\//g, "-"));
       var newPostRef = this.db.list('formulariosEmpleo').push(newForm);
       var postId = newPostRef.key;
       this.openDialog(postId);
     }
   }
+  
   openDialog(postId: string) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, { data: 'Formulario guardado exitosamente. Código: ' + postId });
     dialogRef.afterClosed().subscribe(res => {

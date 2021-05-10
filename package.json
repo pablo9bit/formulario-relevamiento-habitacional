@@ -36,7 +36,8 @@
     "rxjs": "~6.6.0",
     "stream": "0.0.2",
     "tslib": "^2.0.0",
-    "zone.js": "~0.10.2"
+    "zone.js": "~0.10.2",
+    "@ngx-formly/bootstrap": "^5.0.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1002.0",
