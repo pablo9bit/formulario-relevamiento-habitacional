@@ -554,7 +554,7 @@ export class AppComponent {
       },
 
 
-      // EMPRESA
+      // IDENTIFICACION TERRITORIAL
       {
         key: 'Identificación territorial',
         type: 'no repeat',
