@@ -4,14 +4,14 @@
 
 export const environment = {
   production: false,
-  firebase: {
-    apiKey: "AIzaSyBGQa83ie3Rdv6--Bq5VF5KEyNEUQUgXng",
-    authDomain: "relevamientohab-cba-gov-ar.firebaseapp.com",
-    databaseURL: "https://relevamientohab-cba-gov-ar-default-rtdb.firebaseio.com",
-    projectId: "relevamientohab-cba-gov-ar",
-    storageBucket: "relevamientohab-cba-gov-ar.appspot.com",
-    messagingSenderId: "776828462573",
-    appId: "1:776828462573:web:6820af9dddf4d01e5573e4"
+  firebase : {
+    apiKey: "AIzaSyC2Vy-93CAAZIluAgKwKnZ0VyOoBAKE0lA",
+    authDomain: "bolsin.firebaseapp.com",
+    projectId: "bolsin",
+    storageBucket: "bolsin.appspot.com",
+    messagingSenderId: "1058848597166",
+    appId: "1:1058848597166:web:641345372db138c0cc793f",
+    measurementId: "G-RPPZSLFY92"
   }
 };
 

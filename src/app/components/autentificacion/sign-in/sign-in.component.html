@@ -1,0 +1,31 @@
+<div class="row text-center" style="width: 30%; margin: auto">
+  <br>
+  <h3>Ingresar</h3>
+  <br>
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Username" #userName required />
+  </div>
+  <p></p>
+  <div class="form-group">
+    <input type="password" class="form-control" placeholder="Password" #userPassword required />
+  </div>
+  <p></p>
+  <!-- Calling SignIn Api from AuthService -->
+  <div class="form-group">
+    <input type="button" class="btn btn-primary" value="Ingresar"
+      (click)="loggedIn(userName.value, userPassword.value)" />
+  </div>
+  <p></p>
+  <br />
+  <div *ngIf="ingresando" class="alert alert-primary" role="alert">
+    Ingresando...<br> Por Favor espere. Gracias.
+  </div>
+  <p></p>
+  <!--  <div class="forgotPassword">
+    <span routerLink="/forgot-password">Forgot Password?</span>
+  </div> -->
+  <div>
+    <span>No tienes una Cuenta? </span>
+  </div>
+  <a routerLink="/sign-up"> Registrate</a>
+</div>

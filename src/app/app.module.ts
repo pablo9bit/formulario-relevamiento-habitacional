@@ -1,6 +1,6 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { BrowserModule } from '@angular/platform-browser'
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 
 import { AppRoutingModule } from './app-routing.module'
@@ -29,12 +29,20 @@ import { RepeatTypeComponent } from './formly-types/repeat-type.formly.component
 import { NoRepeatTypeComponent } from './formly-types/no-repeat-type.formly.component'
 import { FormlyFieldButton } from './formly-types//button-type.component'
 import { MAT_DATE_LOCALE } from '@angular/material/core';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
+
 import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
 
+
+import { SignInComponent } from './components/autentificacion/sign-in/sign-in.component';
+import { SignUpComponent } from './components/autentificacion/sign-up/sign-up.component';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { environment } from 'src/environments/environment';
+import { GuardGuard } from './components/autentificacion/guard.guard';
+import { SignOutComponent } from './components/autentificacion/sign-out/sign-out.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
 
 export function validateRequired(err, field: FormlyFieldConfig) {
 	return `${field.key} es requerido`
@@ -61,7 +69,13 @@ export function IpValidatorMessage(err, field: FormlyFieldConfig) {
 }
 
 @NgModule({
-	declarations: [AppComponent, RepeatTypeComponent, NoRepeatTypeComponent, FormlyFieldButton, ConfirmDialogComponent],
+	declarations: [AppComponent, RepeatTypeComponent, NoRepeatTypeComponent, 
+		FormlyFieldButton, ConfirmDialogComponent, 
+		SignInComponent,
+		SignUpComponent,
+		SignOutComponent,
+		FormularioComponent
+	],
 	entryComponents: [ConfirmDialogComponent],
 	imports: [
 		CommonModule,
@@ -108,13 +122,17 @@ export function IpValidatorMessage(err, field: FormlyFieldConfig) {
 		FormlyMaterialModule,
 		FormlyModule.forRoot({ extras: { lazyRender: true } }),
 		AngularFireModule.initializeApp(environment.firebase),
+		AngularFireAuthModule,
+		AngularFireAuthModule,
 		NgbModule,
 	],
-	providers: [
-		{provide: MAT_DATE_LOCALE, useValue: 'es-ES'}
+	/* providers: [
+		{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }
 
-],
+	], */
+	providers: [{ provide: MAT_DATE_LOCALE, useValue: 'es-ES' }, GuardGuard],
+
 	bootstrap: [AppComponent],
 	schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
-export class AppModule {}
+export class AppModule { }
